@@ -1,16 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'Reveal',
+  data: () => ({
+    menuVisible: false
+  })
+}
+</script>
+
+
+<style lang="scss" scoped>
+  .md-app {
+    max-height: 400px;
+    border: 1px solid rgba(#000, .12);
+  }
+
+   // Demo purposes only
+  .md-drawer {
+    width: 230px;
+    max-width: calc(100vw - 125px);
+  }
+</style>
+
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Raleway;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

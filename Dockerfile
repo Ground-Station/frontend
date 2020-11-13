@@ -11,6 +11,7 @@ COPY ./ground-station/package*.json ./
 
 # instala dependências do projeto
 RUN npm install
+RUN npm install vue-material --save
 
 # # copia arquivos e pastas para o diretório atual de trabalho (pasta 'app')
 COPY ./ground-station .
