@@ -5,11 +5,11 @@
         <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
           <md-icon>menu</md-icon>
         </md-button>
-        <span class="md-title">My Title</span>
+        <span class="md-title">{{ pageTitle }}</span>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
-        <md-toolbar class="md-transparent" md-elevation="0">Navigation</md-toolbar>
+        <md-toolbar class="md-transparent" md-elevation="0"></md-toolbar>
 
         <md-list>
           <md-list-item>
@@ -57,6 +57,9 @@
 <script>
 export default {
   name: 'sidebar',
+  props: [
+    'pageTitle'
+  ],
   data: () => ({
     menuVisible: false
   })
