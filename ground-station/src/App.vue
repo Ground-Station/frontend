@@ -5,18 +5,15 @@
 </template>
 
 <script>
-export default {
-  name: 'Reveal',
-  data: () => ({
-    menuVisible: false
-  })
+
+export default{
+  name: 'app'
 }
 </script>
 
 
 <style lang="scss" scoped>
   .md-app {
-    max-height: 400px;
     border: 1px solid rgba(#000, .12);
   }
 
