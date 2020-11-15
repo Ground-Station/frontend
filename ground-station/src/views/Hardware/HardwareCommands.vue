@@ -15,8 +15,8 @@
               <md-field :class="getValidationClass('commandName')">
                 <label for="CommandName">Nome do comando</label>
                 <md-input name="CommandName" id="CommandName" v-model="form.commandName" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.commandName.required">The first name is required</span>
-                <span class="md-error" v-else-if="!$v.form.commandName.minlength">Invalid first name</span>
+                <span class="md-error" v-if="!$v.form.commandName.required">Nome do comando é obrigatório.</span>
+                <span class="md-error" v-else-if="!$v.form.commandName.minlength">Deve conter no mínimo 6 caracteres.</span>
               </md-field>
             </div>
           </div>
@@ -25,8 +25,8 @@
               <md-field :class="getValidationClass('commandContent')">
                 <label for="commandContent">Conteúdo</label>
                 <md-input type="number" id="commandContent" name="commandContent" autocomplete="commandContent" v-model="form.commandContent" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.commandContent.required">The commandContent is required</span>
-                <span class="md-error" v-else-if="!$v.form.commandContent.maxlength">Invalid commandContent</span>
+                <span class="md-error" v-if="!$v.form.commandContent.required">Valor do comando é obrigatório.</span>
+                <span class="md-error" v-else-if="!$v.form.commandContent.maxlength">Deve conter no máximo 20 caracteres.</span>
               </md-field>
             </div>
           </div>
@@ -35,11 +35,11 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
+          <md-button type="submit" class="md-primary" :disabled="sending">Criar comando</md-button>
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="userSaved">The user {{ lastHardware }} was saved with success!</md-snackbar>
+      <md-snackbar :md-active.sync="commandSaved">Comando {{ lastCommand }} criado com sucesso!</md-snackbar>
     </form>
   </div>
   </sidebar>
@@ -61,20 +61,15 @@
     data: () => ({
       form: {
         commandName: null,
-        serialPort: null,
         commandContent: null,
       },
-      userSaved: false,
+      commandSaved: false,
       sending: false,
-      lastHardware: null
+      lastCommand: null
     }),
     validations: {
       form: {
         commandName: {
-          required,
-          minLength: minLength(6)
-        },
-        serialPort: {
           required,
           minLength: minLength(6)
         },
@@ -97,16 +92,15 @@
       clearForm () {
         this.$v.$reset()
         this.form.commandName = null
-        this.form.serialPort = null
         this.form.commandContent = null
       },
-      saveHardware () {
+      saveCommand () {
         this.sending = true
 
         // Instead of this timeout, here you can call your API
         window.setTimeout(() => {
-          this.lastHardware = `${this.form.commandName} ${this.form.serialPort}`
-          this.userSaved = true
+          this.lastCommand = `${this.form.commandName}`
+          this.commandSaved = true
           this.sending = false
           this.clearForm()
           this.$router.push("/newHardware");
@@ -115,7 +109,7 @@
       validateHardware () {
         this.$v.$touch()
         if (!this.$v.$invalid) {
-          this.saveHardware()
+          this.saveCommand()
         }
       }
     }

@@ -13,10 +13,10 @@
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('microcontroller')">
-                <label for="microcontroler">Nome do microcontrolador</label>
-                <md-input name="microcontroler" id="microcontroler" v-model="form.microcontroller" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.microcontroller.required">The first name is required</span>
-                <span class="md-error" v-else-if="!$v.form.microcontroller.minlength">Invalid first name</span>
+                <label for="microcontroller">Nome do microcontrolador</label>
+                <md-input name="microcontroller" id="microcontroller" v-model="form.microcontroller" :disabled="sending" />
+                <span class="md-error" v-if="!$v.form.microcontroller.required">Nome do microcontrolador é obrigatório.</span>
+                <span class="md-error" v-else-if="!$v.form.microcontroller.minlength">Deve conter no mínimo 6 caracteres.</span>
               </md-field>
             </div>
           </div>
@@ -25,16 +25,16 @@
               <md-field :class="getValidationClass('baudrate')">
                 <label for="baudrate">Baudrate</label>
                 <md-input type="number" id="baudrate" name="baudrate" autocomplete="baudrate" v-model="form.baudrate" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.baudrate.required">The baudrate is required</span>
-                <span class="md-error" v-else-if="!$v.form.baudrate.maxlength">Invalid baudrate</span>
+                <span class="md-error" v-if="!$v.form.baudrate.required">Baudrate é obrigatório.</span>
+                <span class="md-error" v-else-if="!$v.form.baudrate.maxlength">Deve conter no máximo 6 caracteres.</span>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-50">
               <md-field :class="getValidationClass('serialPort')">
                 <label for="serial-port">Porta serial</label>
                 <md-input name="serial-port" id="serial-port" v-model="form.serialPort" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.serialPort.required">The last name is required</span>
-                <span class="md-error" v-else-if="!$v.form.serialPort.minlength">Invalid last name</span>
+                <span class="md-error" v-if="!$v.form.serialPort.required">Porta serial é obrigatória.</span>
+                <span class="md-error" v-else-if="!$v.form.serialPort.minlength">Deve conter no mínimo 6 caracteres.</span>
               </md-field>
             </div>
           </div>
@@ -43,11 +43,11 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="sending">Create user</md-button>
+          <md-button type="submit" class="md-primary" :disabled="sending">Criar hardware</md-button>
         </md-card-actions>
       </md-card>
 
-      <md-snackbar :md-active.sync="userSaved">The user {{ lastHardware }} was saved with success!</md-snackbar>
+      <md-snackbar :md-active.sync="hardwareSaved">Hardware {{ lastHardware }} criado com sucesso!</md-snackbar>
     </form>
   </div>
   </sidebar>
@@ -72,7 +72,7 @@
         serialPort: null,
         baudrate: null,
       },
-      userSaved: false,
+      hardwareSaved: false,
       sending: false,
       lastHardware: null
     }),
@@ -113,8 +113,8 @@
 
         // Instead of this timeout, here you can call your API
         window.setTimeout(() => {
-          this.lastHardware = `${this.form.microcontroller} ${this.form.serialPort}`
-          this.userSaved = true
+          this.lastHardware = `${this.form.microcontroller}`
+          this.hardwareSaved = true
           this.sending = false
           this.clearForm()
           this.$router.push("/hardwareCommands");
