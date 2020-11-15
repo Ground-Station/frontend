@@ -6,35 +6,27 @@
     <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateHardware">
       <md-card class="md-layout-item md-size-70 md-small-size-100">
         <md-card-header>
-          <div class="md-title">Hardwares</div>
+          <div class="md-title">Comandos</div>
         </md-card-header>
 
         <md-card-content>
           <div class="md-layout md-gutter">
             <div class="md-layout-item md-small-size-100">
-              <md-field :class="getValidationClass('microcontroller')">
-                <label for="microcontroler">Nome do microcontrolador</label>
-                <md-input name="microcontroler" id="microcontroler" v-model="form.microcontroller" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.microcontroller.required">The first name is required</span>
-                <span class="md-error" v-else-if="!$v.form.microcontroller.minlength">Invalid first name</span>
+              <md-field :class="getValidationClass('commandName')">
+                <label for="CommandName">Nome do comando</label>
+                <md-input name="CommandName" id="CommandName" v-model="form.commandName" :disabled="sending" />
+                <span class="md-error" v-if="!$v.form.commandName.required">The first name is required</span>
+                <span class="md-error" v-else-if="!$v.form.commandName.minlength">Invalid first name</span>
               </md-field>
             </div>
           </div>
           <div class="md-layout md-gutter">
-            <div class="md-layout-item md-small-size-50">
-              <md-field :class="getValidationClass('baudrate')">
-                <label for="baudrate">Baudrate</label>
-                <md-input type="number" id="baudrate" name="baudrate" autocomplete="baudrate" v-model="form.baudrate" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.baudrate.required">The baudrate is required</span>
-                <span class="md-error" v-else-if="!$v.form.baudrate.maxlength">Invalid baudrate</span>
-              </md-field>
-            </div>
-            <div class="md-layout-item md-small-size-50">
-              <md-field :class="getValidationClass('serialPort')">
-                <label for="serial-port">Porta serial</label>
-                <md-input name="serial-port" id="serial-port" v-model="form.serialPort" :disabled="sending" />
-                <span class="md-error" v-if="!$v.form.serialPort.required">The last name is required</span>
-                <span class="md-error" v-else-if="!$v.form.serialPort.minlength">Invalid last name</span>
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('commandContent')">
+                <label for="commandContent">Conteúdo</label>
+                <md-input type="number" id="commandContent" name="commandContent" autocomplete="commandContent" v-model="form.commandContent" :disabled="sending" />
+                <span class="md-error" v-if="!$v.form.commandContent.required">The commandContent is required</span>
+                <span class="md-error" v-else-if="!$v.form.commandContent.maxlength">Invalid commandContent</span>
               </md-field>
             </div>
           </div>
@@ -68,9 +60,9 @@
     mixins: [validationMixin],
     data: () => ({
       form: {
-        microcontroller: null,
+        commandName: null,
         serialPort: null,
-        baudrate: null,
+        commandContent: null,
       },
       userSaved: false,
       sending: false,
@@ -78,7 +70,7 @@
     }),
     validations: {
       form: {
-        microcontroller: {
+        commandName: {
           required,
           minLength: minLength(6)
         },
@@ -86,7 +78,7 @@
           required,
           minLength: minLength(6)
         },
-        baudrate: {
+        commandContent: {
           required,
           maxLength: maxLength(6)
         }
@@ -104,20 +96,20 @@
       },
       clearForm () {
         this.$v.$reset()
-        this.form.microcontroller = null
+        this.form.commandName = null
         this.form.serialPort = null
-        this.form.baudrate = null
+        this.form.commandContent = null
       },
       saveHardware () {
         this.sending = true
 
         // Instead of this timeout, here you can call your API
         window.setTimeout(() => {
-          this.lastHardware = `${this.form.microcontroller} ${this.form.serialPort}`
+          this.lastHardware = `${this.form.commandName} ${this.form.serialPort}`
           this.userSaved = true
           this.sending = false
           this.clearForm()
-          this.$router.push("/hardwareCommands");
+          this.$router.push("/newHardware");
         }, 1500)
       },
       validateHardware () {
