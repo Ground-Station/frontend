@@ -4,7 +4,7 @@
   >
   <div>
     <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateHardware">
-      <md-card class="md-layout-item md-size-70 md-small-size-100">
+      <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div class="md-title">Hardwares</div>
         </md-card-header>
