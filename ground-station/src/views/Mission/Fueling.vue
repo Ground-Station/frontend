@@ -13,8 +13,6 @@
 </style>
 
 <script>
-// import ApexCharts from 'apexcharts'
-// import VueApexCharts from 'vue-apexcharts'
 import BateryData from './MissionData/Batery.vue'
 import WeightData from './MissionData/Weight.vue'
 export default {

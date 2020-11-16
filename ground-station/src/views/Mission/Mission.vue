@@ -9,15 +9,15 @@
       </md-step>
 
       <md-step id="ignition" md-label="Ignição" :md-error="ignitionStepError" :md-editable="false" :md-done.sync="ignition">
-          <flightData>
-          </flightData>
-         <md-button class="md-raised md-primary" @click="setDone('ignition', 'flight')">Continue</md-button>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
+        <md-button class="md-raised md-primary" @click="setDone('ignition', 'flight')">Continue</md-button>
         <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
       </md-step>
 
       <md-step id="flight" md-label="Voo" :md-editable="false" :md-done.sync="flight">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <md-button class="md-raised md-primary" @click="setDone('flight', 'landing')">Done</md-button>
+        <flightData>
+        </flightData>
+        <md-button class="md-raised md-primary" @click="setDone('flight', 'landing')">Next</md-button>
       </md-step>
 
       <md-step id="landing" md-label="Pouso" :md-editable="false" :md-done.sync="landing">
