@@ -1,16 +1,8 @@
 <template>
   <div>
     <div class="md-layout md-alignment-center-space-around">
-      <md-card id="page-card" class="md-layout-item md-size-30 md-small-size-100">
-         <md-card-header>
-          <div class="md-title">Bateria</div>
-        </md-card-header>
-        <md-card-content>
-          <div id="chart">
-            <apexchart type="radialBar" height="240" :options="bateryOptions" :series="baterySeries"></apexchart>
-          </div>
-        </md-card-content>
-      </md-card>
+      <bateryData>
+      </bateryData>
       
       <md-card id="page-card" class="md-layout-item md-size-60 md-small-size-100">
         <md-card-header>
@@ -18,12 +10,12 @@
         </md-card-header>
         <md-card-content>
           <div class="md-layout md-gutter">
-            <div class="md-layout-item md-size-40 md-small-size-100">
+            <div class="md-layout-item md-size-60 md-small-size-100">
               <div id="chart">
                 <apexchart type="radialBar" height="240" :options="bateryOptions" :series="baterySeries"></apexchart>
               </div>
             </div>
-            <div class="md-layout-item md-size-40 md-small-size-100">
+            <div class="md-layout-item md-size-30 md-small-size-100">
               <span class="md-display-1">{{ weight }} Kg</span>
               <span class="md-headline">Peso</span>
               <md-button class="md-raised md-primary" @click="startFueling()">Iniciar abastecimento</md-button>
@@ -43,9 +35,10 @@
 <script>
 // import ApexCharts from 'apexcharts'
 import VueApexCharts from 'vue-apexcharts'
+import BateryData from './MissionData/Batery.vue'
 export default {
   name: 'FuelingData',
-  components: { apexchart: VueApexCharts},
+  components: { apexchart: VueApexCharts, BateryData},
   data: () => ({  
     fueling: true,
     weight: 16,

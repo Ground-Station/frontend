@@ -9,7 +9,8 @@
       </md-step>
 
       <md-step id="ignition" md-label="Ignição" :md-error="ignitionStepError" :md-editable="false" :md-done.sync="ignition">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
+          <flightData>
+          </flightData>
          <md-button class="md-raised md-primary" @click="setDone('ignition', 'flight')">Continue</md-button>
         <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
       </md-step>
@@ -31,9 +32,10 @@
 <script>
  import Sidebar from '../../components/Sidebar.vue'
  import FuelingData from './Fueling.vue'
+ import FlightData from './Flight.vue'
   export default {
     name: 'StepperNonEditable',
-    components: { Sidebar, FuelingData },
+    components: { Sidebar, FuelingData, FlightData },
     data: () => ({
       active: 'fueling',
       fueling: false,
