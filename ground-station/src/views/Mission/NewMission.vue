@@ -1,0 +1,128 @@
+<template>
+<sidebar
+    pageTitle="Novo hardware"
+  >
+  <div>
+    <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateMission">
+      <md-card class="md-layout-item md-size-50 md-small-size-100">
+        <md-card-header>
+          <div class="md-title">Nova Missão</div>
+        </md-card-header>
+
+        <md-card-content>
+          <div class="md-layout md-gutter">
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('missionName')">
+                <label for="missionName">Nome da missão</label>
+                <md-input name="missionName" id="missionName" v-model="form.missionName" :disabled="sending" />
+                <span class="md-error" v-if="!$v.form.missionName.required">Nome da missão é obrigatório.</span>
+                <span class="md-error" v-else-if="!$v.form.missionName.minlength">Deve conter no mínimo 6 caracteres.</span>
+              </md-field>
+            </div>
+          </div>
+          <div class="md-layout md-gutter">
+            <div class="md-layout-item md-small-size-100">
+              <md-field :class="getValidationClass('apogee')">
+                <label for="apogee">Apogeu esperado</label>
+                <md-input type="number" id="apogee" name="apogee" autocomplete="apogee" v-model="form.apogee" :disabled="sending" />
+                <span class="md-error" v-if="!$v.form.apogee.required">Apogeu é obrigatório.</span>
+                <span class="md-error" v-else-if="!$v.form.apogee.minLength">Deve conter no mínimo 3 caracteres.</span>
+              </md-field>
+            </div>
+          </div>
+        </md-card-content>
+
+        <md-progress-bar md-mode="indeterminate" v-if="sending" />
+
+        <md-card-actions>
+          <md-button type="submit" class="md-primary" :disabled="sending">Criar foguete</md-button>
+        </md-card-actions>
+      </md-card>
+
+      <md-snackbar :md-active.sync="missionSaved">Foguete {{ lastMission }} criado com sucesso!</md-snackbar>
+    </form>
+  </div>
+  </sidebar>
+</template>
+
+<script>
+  import Sidebar from '../../components/Sidebar.vue'
+  import { validationMixin } from 'vuelidate'
+  import {
+    required,
+    minLength
+  } from 'vuelidate/lib/validators'
+
+  export default {
+    name: 'FormValidation',
+    components: { Sidebar },
+    mixins: [validationMixin],
+    data: () => ({
+      form: {
+        missionName: null,
+        apogee: null
+      },
+      missionSaved: false,
+      sending: false,
+      lastMission: null
+    }),
+    validations: {
+      form: {
+        missionName: {
+          required,
+          minLength: minLength(6)
+        },
+        apogee: {
+          required,
+          minLength: minLength(5)
+        }
+      }
+    },
+    methods: {
+      getValidationClass (fieldName) {
+        const field = this.$v.form[fieldName]
+
+        if (field) {
+          return {
+            'md-invalid': field.$invalid && field.$dirty
+          }
+        }
+      },
+      clearForm () {
+        this.$v.$reset()
+        this.form.missionName = null
+        this.form.apogee = null
+      },
+      saveMission () {
+        this.sending = true
+
+        // Instead of this timeout, here you can call your API
+        window.setTimeout(() => {
+          this.lastMission = `${this.form.missionName}`
+          this.missionSaved = true
+          this.sending = false
+          this.clearForm()
+          this.$router.push("/mission");
+        }, 1500)
+      },
+      validateMission () {
+        this.$v.$touch()
+        if (!this.$v.$invalid) {
+          this.saveMission()
+        }
+      }
+    }
+  }
+</script>
+
+<style lang="scss" scoped>
+  .md-progress-bar {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  .md-switch {
+    display: flex;
+  }
+</style>
