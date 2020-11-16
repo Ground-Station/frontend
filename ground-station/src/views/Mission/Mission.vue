@@ -3,8 +3,9 @@
   <div>
     <md-steppers :md-active-step.sync="active" md-alternative md-linear>
       <md-step id="fueling" md-label="Abastecimento" :md-editable="false" :md-done.sync="fueling">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <md-button class="md-raised md-primary" @click="setDone('fueling', 'ignition')">Continue</md-button>
+        <fuelingData>
+        </fuelingData>
+        <md-button class="md-raised md-primary" @click="setDone('fueling', 'ignition')">Iniciar ignição</md-button>
       </md-step>
 
       <md-step id="ignition" md-label="Ignição" :md-error="ignitionStepError" :md-editable="false" :md-done.sync="ignition">
@@ -29,9 +30,10 @@
 
 <script>
  import Sidebar from '../../components/Sidebar.vue'
+ import FuelingData from './Fueling.vue'
   export default {
     name: 'StepperNonEditable',
-    components: { Sidebar },
+    components: { Sidebar, FuelingData },
     data: () => ({
       active: 'fueling',
       fueling: false,
