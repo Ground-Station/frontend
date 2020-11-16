@@ -3,7 +3,7 @@
     pageTitle="Novo hardware"
   >
   <div>
-    <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateHardware">
+    <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateRocket">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div class="md-title">Novo Foguete</div>
@@ -146,7 +146,7 @@
           this.$router.push("/newHardware");
         }, 1500)
       },
-      validateHardware () {
+      validateRocket () {
         this.$v.$touch()
         if (!this.$v.$invalid) {
           this.saveHardware()

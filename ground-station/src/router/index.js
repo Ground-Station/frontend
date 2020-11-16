@@ -4,11 +4,13 @@ import VueRouter from 'vue-router'
 import NewHardware from '../views/Hardware/NewHardware.vue'
 import HardwareCommands from '../views/Hardware/HardwareCommands.vue'
 import NewRocket from '../views/Rocket/NewRocket.vue'
+import NewMission from '../views/Mission/NewMission.vue'
+import Mission from '../views/Mission/Mission.vue'
 
-import FirstMission from '../views/Mission/FirstMission.vue'
+import InitMission from '../views/Mission/InitMission.vue'
 import ChooseHardware from '../views/Mission/ChooseHardware.vue'
 
-import InitialPage from "../views/InitialPage.vue";
+// import InitialPage from "../views/InitialPage.vue";
 import NotFound from "../views/NotFoundPage.vue";
 
 Vue.use(VueRouter)
@@ -30,14 +32,24 @@ const routes = [
       component: NewRocket
     },
     {
-      path: '/firstMission',
-      name: 'firstMission',
-      component: FirstMission
+      path: '/initMission',
+      name: 'initMission',
+      component: InitMission
     },
     {
       path: '/chooseHardware',
       name: 'chooseHardware',
       component: ChooseHardware
+    },
+    {
+      path: '/newMission',
+      name: 'newMission',
+      component: NewMission
+    },
+    {
+      path: '/mission',
+      name: 'mission',
+      component: Mission
     },
     { 
       path: "*", 
@@ -46,8 +58,8 @@ const routes = [
     },
     { 
       path: "/", 
-      name: 'initialPage',
-      component: InitialPage 
+      name: 'newRocket',
+      redirect: '/newRocket' 
     }
 ]
 

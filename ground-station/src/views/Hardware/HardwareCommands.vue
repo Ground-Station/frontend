@@ -103,7 +103,7 @@
           this.commandSaved = true
           this.sending = false
           this.clearForm()
-          this.$router.push("/newHardware");
+          this.$router.push("/initMission");
         }, 1500)
       },
       validateHardware () {
