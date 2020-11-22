@@ -6,6 +6,7 @@ import HardwareCommands from '../views/Hardware/HardwareCommands.vue'
 import NewRocket from '../views/Rocket/NewRocket.vue'
 import NewMission from '../views/Mission/NewMission.vue'
 import Mission from '../views/Mission/Mission.vue'
+import MissionDetail from '../views/Mission/MissionDetail.vue'
 
 import InitMission from '../views/Mission/InitMission.vue'
 import ChooseHardware from '../views/Mission/ChooseHardware.vue'
@@ -50,6 +51,11 @@ const routes = [
       path: '/mission',
       name: 'mission',
       component: Mission
+    },
+    {
+      path: '/mission/x/detail',
+      name: 'missionDetail',
+      component: MissionDetail
     },
     { 
       path: "*", 

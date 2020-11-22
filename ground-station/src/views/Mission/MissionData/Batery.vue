@@ -1,20 +1,21 @@
 <template>
-  <!-- <div class="md-layout md-alignment-center-space-around"> -->
-    <md-card id="page-card" class="md-layout-item md-size-30 md-small-size-100">
-        <md-card-header>
-        <div class="md-title">Bateria</div>
-      </md-card-header>
-      <md-card-content>
-        <div id="chart">
-          <apexchart type="radialBar" height="240" :options="bateryOptions" :series="baterySeries"></apexchart>
-        </div>
-      </md-card-content>
-    </md-card>
-  <!-- </div> -->
+  <md-card class="md-layout-item md-layout md-size-30 md-small-size-100" id="container">
+      <md-card-header>
+      <div class="md-title">Bateria</div>
+    </md-card-header>
+    <md-card-content>
+      <div id="chart">
+        <apexchart type="radialBar" height="240" :options="bateryOptions" :series="baterySeries"></apexchart>
+      </div>
+    </md-card-content>
+  </md-card>
 </template>
 
 <style lang="scss" scoped>
-  
+#container > .md-layout {
+  min-height: 380px;
+  height: 380px;
+}
 </style>
 
 <script>
@@ -25,7 +26,7 @@ export default {
   data: () => ({  
     fueling: true,
     weight: 16,
-    baterySeries: [75],
+    baterySeries: [73],
     bateryOptions: {
       chart: {
         height: 240,
@@ -80,17 +81,7 @@ export default {
         }
       },
       fill: {
-        type: 'gradient',
-        gradient: {
-          shade: 'dark',
-          type: 'horizontal',
-          shadeIntensity: 0.5,
-          gradientToColors: ['#ABE5A1'],
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [0, 100]
-        }
+        type: 'color',
       },
       stroke: {
         lineCap: 'round'

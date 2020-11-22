@@ -1,16 +1,16 @@
 <template>
-  <md-card id="page-card" class="md-layout-item md-size-60 md-small-size-100">
+  <md-card class="md-layout-item md-layout md-size-60 md-small-size-100" id="container">
     <md-card-header>
-      <div class="md-title">Abastecimento do foguete</div>
+      <div class="md-title">Foguete em voo</div>
     </md-card-header>
     <md-card-content>
-      <div class="md-layout md-gutter">
-        <div class="md-layout-item md-size-60 md-small-size-100">
+      <div class="md-layout md-alignment-center-space-around">
+        <div class="md-layout-item md-size-80">
           <div id="chart">
             <apexchart type="line" height="240" :options="chartOptions" :series="series"></apexchart>
           </div>
         </div>
-        <div class="md-layout-item md-size-30 md-small-size-100">
+        <div class="md-layout-item md-size-10">
           <span class="md-display-1">{{ height }} metros</span>
           <span class="md-headline">Altitude</span>
           <md-button class="md-raised md-primary" @click="startFueling()">Iniciar abastecimento</md-button>
@@ -21,7 +21,10 @@
 </template>
 
 <style lang="scss" scoped>
-  
+#container > .md-layout {
+  min-height: 380px;
+  height: 380px;
+}
 </style>
 
 <script>
@@ -33,11 +36,13 @@ export default {
     fueling: true,
     height: 16,
     series: [{
-          name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+          name: "Altitude",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148,
+                 127, 111, 92, 80, 53, 41, 27, 11, 0]
     }],
     chartOptions: {
       chart: {
+        width: '100%',
         height: 240,
         type: 'line',
         zoom: {
@@ -48,10 +53,10 @@ export default {
         enabled: false
       },
       stroke: {
-        curve: 'straight'
+        curve: 'smooth'
       },
       title: {
-        text: 'Product Trends by Month',
+        text: 'Altitude por tempo',
         align: 'left'
       },
       grid: {
@@ -61,7 +66,10 @@ export default {
         },
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        categories: ['10:30', '10:31', '10:32', '10:33', '10:34', '10:35', '10:36', '10:37', '10:38',
+                     '10:39', '10:40', '10:41', '10:42', '10:43', '10:44', '10:45', '10:46', '10:47'
+        ],
       }
     },
   }),

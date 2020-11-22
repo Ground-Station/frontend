@@ -1,5 +1,5 @@
 <template>
-  <md-card id="page-card" class="md-layout-item md-size-60 md-small-size-100">
+  <md-card class="md-layout-item md-layout md-size-60 md-small-size-100" id="container">
     <md-card-header>
       <div class="md-title">Abastecimento do foguete</div>
     </md-card-header>
@@ -11,17 +11,23 @@
           </div>
         </div>
         <div class="md-layout-item md-size-30 md-small-size-100">
-          <span class="md-display-1">{{ weight }} Kg</span>
+          <span class="md-display-1">{{ weight }} kg</span>
           <span class="md-headline">Peso</span>
-          <md-button class="md-raised md-primary" @click="startFueling()">Iniciar abastecimento</md-button>
+          
         </div>
       </div>
     </md-card-content>
+    <md-card-actions>
+<md-button class="md-raised md-primary" @click="startFueling()">Iniciar abastecimento</md-button>
+    </md-card-actions>
   </md-card>
 </template>
 
 <style lang="scss" scoped>
-  
+  #container > .md-layout {
+  min-height: 380px;
+  height: 380px;
+}
 </style>
 
 <script>
@@ -31,8 +37,8 @@ export default {
   components: { apexchart: VueApexCharts},
   data: () => ({  
     fueling: true,
-    weight: 16,
-    weightSeries: [75],
+    weight: 27,
+    weightSeries: [100],
     weightOptions: {
       chart: {
         height: 240,
