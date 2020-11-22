@@ -1,6 +1,6 @@
 <template>
 <sidebar
-    pageTitle="Novo hardware"
+    pageTitle="Novo comando"
   >
   <div>
     <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateHardware">

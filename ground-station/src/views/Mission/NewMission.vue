@@ -1,12 +1,12 @@
 <template>
 <sidebar
-    pageTitle="Novo hardware"
+    pageTitle="Nova missão"
   >
   <div>
     <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateMission">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
-          <div class="md-title">Nova Missão</div>
+          <div class="md-title">Nova missão</div>
         </md-card-header>
 
         <md-card-content>
@@ -35,7 +35,7 @@
         <md-progress-bar md-mode="indeterminate" v-if="sending" />
 
         <md-card-actions>
-          <md-button type="submit" class="md-primary" :disabled="sending">Criar foguete</md-button>
+          <md-button type="submit" class="md-primary" :disabled="sending">Próximo</md-button>
         </md-card-actions>
       </md-card>
 

@@ -1,6 +1,6 @@
 <template>
 <sidebar
-    pageTitle="Novo hardware"
+    pageTitle="Novo foguete"
   >
   <div>
     <form novalidate class="md-layout md-alignment-top-center" @submit.prevent="validateRocket">

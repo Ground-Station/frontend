@@ -22,8 +22,7 @@
                 </md-card-content>
 
                 <md-card-actions>
-                  <md-button>Action</md-button>
-                  <md-button>Action</md-button>
+                  <router-link to="/newMission" tag="md-button">Escolher</router-link>
                 </md-card-actions>
               </md-ripple>
             </md-card>
