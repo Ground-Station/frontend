@@ -46,7 +46,7 @@ export default {
   mounted () {
     axios
       .get('http://127.0.0.1:3000/foguetes')
-      .then(response => {(this.foguetes = [response.data[16].nome, response.data[15].nome]); console.log(response.data[0].nome)})
+      .then(response => {(this.foguetes = [response.data[response.data.length - 1].nome]); console.log(response.data[0].nome)})
   }
 }
 </script>
