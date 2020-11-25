@@ -8,11 +8,11 @@
       
         <md-card-content>
           <div class="md-layout md-alignment-center-space-around">
-            <md-card class="md-layout-item md-size-40 md-small-size-100" md-with-hover v-for="item in items" :key="item.message">
+            <md-card class="md-layout-item md-size-40 md-small-size-100" md-with-hover v-for="foguete in foguetes" :key="foguete.nome">
               <md-ripple>
                 <md-card-header>
                   <div class="md-title">
-                    {{ item.message }}
+                    {{ foguete }}
                   </div>
                   <div class="md-subhead">It also have a ripple</div>
                 </md-card-header>
@@ -35,14 +35,20 @@
 </template>
 
 <script>
+import * as axios from 'axios'
+
 export default {
-  data: () => ({
-    items: [
-      { message: 'Algo' },
-      { message: 'Outro' }
-    ]
-  })
-};
+ data () {
+    return {
+      foguetes: null
+    }
+  },
+  mounted () {
+    axios
+      .get('http://127.0.0.1:3000/foguetes')
+      .then(response => {(this.foguetes = [response.data[16].nome, response.data[15].nome]); console.log(response.data[0].nome)})
+  }
+}
 </script>
 
 <style lang="scss" scoped>

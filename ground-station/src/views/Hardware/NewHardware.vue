@@ -61,6 +61,7 @@
     minLength,
     maxLength
   } from 'vuelidate/lib/validators'
+  import * as axios from 'axios'
 
   export default {
     name: 'FormValidation',
@@ -108,17 +109,22 @@
         this.form.serialPort = null
         this.form.baudrate = null
       },
-      saveHardware () {
-        this.sending = true
-
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.lastHardware = `${this.form.microcontroller}`
-          this.hardwareSaved = true
-          this.sending = false
-          this.clearForm()
-          this.$router.push("/hardwareCommands");
-        }, 1500)
+      async saveHardware () {
+           this.sending = true
+           const headers = { 
+              "content-type": "application/json"
+          };
+          const hardware = { nomeHardware: this.form.microcontroller , baudRate: parseFloat(this.form.baudrate), portaSerial: this.form.serialPort };
+          await axios.post("http://127.0.0.1:3000/hardware", hardware, { headers })
+          .then(() => {
+            console.log("Deu certo!");
+          },
+          this.$router.push("/hardwareCommands"))
+          .catch(error => {
+            this.errorMessage = error.message;
+            console.error("There was an error!", error);
+            console.log(error.response.data);
+          });
       },
       validateHardware () {
         this.$v.$touch()

@@ -137,16 +137,20 @@
         this.form.emptyWeight = null
       },
       async saveRocket () {
+           this.sending = true
            const headers = { 
               "content-type": "application/json"
           };
           const rocket = { nome: this.form.rocketName , pesoVazio: parseFloat(this.form.fullWeight), pesoCheio: parseFloat(this.form.emptyWeight)  };
           await axios.post("http://127.0.0.1:3000/foguetes", rocket, { headers })
-          .then(console.log("Deu certo!"))
+          .then(() => {
+            console.log("Deu certo!");
+          },
+          this.$router.push("/newHardware"))
           .catch(error => {
             this.errorMessage = error.message;
             console.error("There was an error!", error);
-            console.log(error.response.data)
+            console.log(error.response.data);
           });
       },
       validateRocket () {

@@ -52,6 +52,7 @@
     required,
     minLength
   } from 'vuelidate/lib/validators'
+  import * as axios from 'axios'
 
   export default {
     name: 'FormValidation',
@@ -93,17 +94,22 @@
         this.form.missionName = null
         this.form.apogee = null
       },
-      saveMission () {
-        this.sending = true
-
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.lastMission = `${this.form.missionName}`
-          this.missionSaved = true
-          this.sending = false
-          this.clearForm()
-          this.$router.push("/mission");
-        }, 1500)
+      async saveMission () {
+         this.sending = true
+           const headers = { 
+              "content-type": "application/json"
+          };
+          const mission = { apogeuEsperado: parseFloat(this.form.apogee) , nomeMissao: this.form.missionName};
+          await axios.post("http://127.0.0.1:3000/missoes", mission, { headers })
+          .then(() => {
+            console.log("Deu certo!");
+          },
+          this.$router.push("/mission"))
+          .catch(error => {
+            this.errorMessage = error.message;
+            console.error("There was an error!", error);
+            console.log(error.response.data);
+          });
       },
       validateMission () {
         this.$v.$touch()
