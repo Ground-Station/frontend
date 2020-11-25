@@ -1,6 +1,6 @@
 <img src="assets/img/Capa.png" width="1000" title="">
 
-Repositório utilizado para criação do script de simulação do hardware.
+Repositório utilizado para manter o front end do projeto RGS
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
