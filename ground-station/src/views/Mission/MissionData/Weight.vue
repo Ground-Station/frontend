@@ -6,7 +6,7 @@
     <md-card-content>
       <div class="md-layout md-gutter">
         <div class="md-layout-item md-size-60 md-small-size-100">
-          <div id="chart">
+          <div id="chart" >
             <apexchart type="radialBar" height="240" :options="weightOptions" :series="weightSeries"></apexchart>
           </div>
         </div>
