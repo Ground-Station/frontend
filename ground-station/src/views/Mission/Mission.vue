@@ -9,9 +9,10 @@
       </md-step>
 
       <md-step id="ignition" md-label="Ignição" :md-error="ignitionStepError" :md-editable="false" :md-done.sync="ignition">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <md-button class="md-raised md-primary" @click="setDone('ignition', 'flight')">Continue</md-button>
-        <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+        <p style="font-size:25px">  Aguarde a finalização do processo de ignição!    </p>
+        <img src="https://i.imgur.com/UtsdSYV.png" width="500" height="500" style="">
+        <br>
+        <md-button class="md-raised md-primary" style="" @click="setDone('ignition', 'flight')">Continuar</md-button>
       </md-step>
 
       <md-step id="flight" md-label="Voo" :md-editable="false" :md-done.sync="flight">
