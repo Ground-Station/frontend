@@ -36,7 +36,7 @@ export default {
   data: () => ({  
     fueling: true,
     height: 16,
-    altitudes = null,
+    altitudes:  null,
     series: [{
           name: "Altitude",
           data: [altitudes]
