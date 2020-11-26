@@ -1,19 +1,16 @@
 <template>
   <md-card class="md-layout-item md-layout md-size-60 md-small-size-100" id="container">
-    <md-card-header>
-      <div class="md-title">Foguete em voo</div>
-    </md-card-header>
-    <md-card-content>
-      <div class="md-layout md-alignment-center-space-around">
+    <md-card-content  style="display: flex; flex: 1">
+      <div class="md-layout md-alignment-center-space-around"  style="flex: 1" > 
         <div class="md-layout-item md-size-80">
           <div id="chart">
             <apexchart type="line" height="240" :options="chartOptions" :series="series"></apexchart>
           </div>
         </div>
-        <div class="md-layout-item md-size-10">
+        <div class="md-layout-item md-size-10"   style="flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column" >
           <span class="md-display-1">{{ height }} metros</span>
           <span class="md-headline">Altitude</span>
-          <md-button class="md-raised md-primary" @click="startFueling()">Iniciar abastecimento</md-button>
+          <md-button class="md-raised md-primary" style="font-size:10px" @click="startFueling()">Iniciar abastecimento</md-button>
         </div>
       </div>
     </md-card-content>
