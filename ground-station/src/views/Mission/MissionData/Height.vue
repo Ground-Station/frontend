@@ -26,16 +26,20 @@
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
+
+
+Vue.use(VueCrontab)
+
 export default {
   name: 'HeightData',
   components: { apexchart: VueApexCharts},
   data: () => ({  
     fueling: true,
     height: 16,
+    altitudes = null,
     series: [{
           name: "Altitude",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148,
-                 127, 111, 92, 80, 53, 41, 27, 11, 0]
+          data: [altitudes]
     }],
     chartOptions: {
       chart: {
@@ -70,5 +74,19 @@ export default {
       }
     },
   }),
+  created () {
+    let result = this.$crontab.addJob({
+      name: 'height',
+      interval: {
+        seconds: '/6',
+      },
+      job: this.mounted
+    })
+  },
+   mounted () {
+    axios
+      .get('http://127.0.0.1:3000/altitudes')
+      .then(response => {(this.altitudes = [response.data[response.data.length - 1].altitude]); console.log(response.data[0].altitude)})
+  }
 }
 </script>
