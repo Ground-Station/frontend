@@ -5,7 +5,7 @@
       <md-step id="fueling" md-label="Abastecimento" :md-editable="false" :md-done.sync="fueling">
         <fuelingData>
         </fuelingData>
-        <md-button class="md-raised md-primary" @click="setDone('fueling', 'ignition')">Próximo</md-button>
+        <md-button class="md-raised md-primary" style="margin-top:16px" @click="setDone('fueling', 'ignition')">Próximo</md-button>
       </md-step>
 
       <md-step id="ignition" md-label="Ignição" :md-error="ignitionStepError" :md-editable="false" :md-done.sync="ignition">
