@@ -1,11 +1,9 @@
 <template>
   <md-card class="md-layout-item md-layout md-size-30 md-small-size-100" id="container">
-      <md-card-header>
-      <div class="md-title">Bateria</div>
-    </md-card-header>
+  
     <md-card-content>
-      <div id="chart">
-        <apexchart type="radialBar" height="240" :options="bateryOptions" :series="baterySeries"></apexchart>
+      <div id="chart" style="width:350px">
+        <apexchart type="radialBar" height="340" weight="340"  :options="bateryOptions" :series="baterySeries"></apexchart>
       </div>
     </md-card-content>
   </md-card>
@@ -30,6 +28,7 @@ export default {
     bateryOptions: {
       chart: {
         height: 240,
+        weight: 240,
         type: 'radialBar',
         toolbar: {
           show: true
@@ -37,16 +36,8 @@ export default {
       },
       plotOptions: {
         radialBar: {
-          startAngle: -135,
-          endAngle: 225,
             hollow: {
-            margin: 0,
             size: '70%',
-            background: '#fff',
-            image: undefined,
-            imageOffsetX: 0,
-            imageOffsetY: 0,
-            position: 'front',
             dropShadow: {
               enabled: true,
               top: 3,
@@ -70,11 +61,12 @@ export default {
           dataLabels: {
             show: true,
             name: {
-              show: false
+              show: true,
+              fontSize: '20px'
             },
             value: {
               color: '#111',
-              fontSize: '36px',
+              fontSize: '1.7em',
               show: true,
             }
           }

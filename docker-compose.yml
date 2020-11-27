@@ -4,5 +4,6 @@ services:
     build: .
     ports:
       - "8080:8080"
+    command: sh -c "npm install && npm run serve"
     volumes:
-      - ./ground-station:/app/ground-station
+      - ./ground-station:/app

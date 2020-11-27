@@ -18,7 +18,7 @@
   background-color: white;
   align-items: center;
   justify-content: center;
-  min-height: 380px;
+  min-height: 100px;
   height: 380px;
   margin-bottom: 30px;
 }

@@ -1,21 +1,8 @@
-<template>
-  <md-card class="md-layout-item md-layout md-size-90">
-    <md-card-header>
-      <div class="md-title">Foguete em pouso</div>
-    </md-card-header>
-    <md-card-content>
-      <div class="md-layout md-gutter">
-        <div class="md-layout-item md-size-60">
-          <div id="chart">
-            <apexchart type="line" height="120" :options="chartOptions" :series="series"></apexchart>
-          </div>
-        </div>
-        <div class="md-layout-item md-size-30">
-          <span class="md-display-1">{{ coordinates }}</span>
-          <span class="md-headline">Coordenadas</span>
-          <md-button class="md-raised md-primary" @click="startFueling()">Finalizar Missão</md-button>
-        </div>
-      </div>
+<template  >
+  <md-card class="md-layout-item md-layout md-size-90" style="height:100px">
+    <md-card-content  style="height:100px">
+          <span class="md-headline">Coordenadas:</span>
+          <span class="md-display-1" style="float:right; margin-left:25px">{{ coordinates }}</span>
     </md-card-content>
   </md-card>
 </template>
@@ -25,10 +12,8 @@
 </style>
 
 <script>
-import VueApexCharts from 'vue-apexcharts'
 export default {
   name: 'HeightData',
-  components: { apexchart: VueApexCharts},
   data: () => ({  
     fueling: true,
     coordinates: '-15.989383919844288, -48.045136048213',

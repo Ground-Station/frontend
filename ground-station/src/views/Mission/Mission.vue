@@ -5,13 +5,22 @@
       <md-step id="fueling" md-label="Abastecimento" :md-editable="false" :md-done.sync="fueling">
         <fuelingData>
         </fuelingData>
-        <md-button class="md-raised md-primary" @click="setDone('fueling', 'ignition')">Próximo</md-button>
+        <md-button class="md-raised md-primary" style="margin-top:16px" @click="setDone('fueling', 'decoupling_and_depressurization')">Próximo</md-button>
+      </md-step>
+
+      <md-step id="decoupling_and_depressurization" md-label="Desacoplagem e despressurização" :md-error="decouplingAndDepressurizationStepError" :md-editable="false" :md-done.sync="decoupling_and_depressurization">
+       
+        <p style="font-size:25px">  Aguarde a finalização do processo de Descoplagem e despressurização!    </p>
+        <img src="https://i.imgur.com/0uCbQMT.png" width="500" height="500" style="">
+        <br>
+        <md-button class="md-raised md-primary" @click="setDone('decoupling_and_depressurization', 'ignition')">Continuar</md-button>
       </md-step>
 
       <md-step id="ignition" md-label="Ignição" :md-error="ignitionStepError" :md-editable="false" :md-done.sync="ignition">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias doloribus eveniet quaerat modi cumque quos sed, temporibus nemo eius amet aliquid, illo minus blanditiis tempore, dolores voluptas dolore placeat nulla.</p>
-        <md-button class="md-raised md-primary" @click="setDone('ignition', 'flight')">Continue</md-button>
-        <md-button class="md-raised md-primary" @click="setError()">Set error!</md-button>
+        <p style="font-size:25px">  Aguarde a finalização do processo de ignição!    </p>
+        <img src="https://i.imgur.com/UtsdSYV.png" width="500" height="500" style="">
+        <br>
+        <md-button class="md-raised md-primary" style="" @click="setDone('ignition', 'flight')">Continuar</md-button>
       </md-step>
 
       <md-step id="flight" md-label="Voo" :md-editable="false" :md-done.sync="flight">
