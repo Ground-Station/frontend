@@ -26,7 +26,7 @@
                 <label for="emptyWeight">Peso vazio</label>
                 <md-input type="number" id="emptyWeight" name="emptyWeight" autocomplete="emptyWeight" v-model="form.emptyWeight" :disabled="sending" />
                 <span class="md-error" v-if="!$v.form.emptyWeight.required">Peso vazio é obrigatório.</span>
-                <span class="md-error" v-else-if="!$v.form.emptyWeight.minLength">Deve conter no mínimo 5 caracteres.</span>
+                <span class="md-error" v-else-if="!$v.form.emptyWeight.minLength">Deve conter no mínimo 3 caracteres.</span>
               </md-field>
             </div>
             <div class="md-layout-item md-small-size-50">
@@ -34,7 +34,7 @@
                 <label for="fullWeight">Peso cheio</label>
                 <md-input type="number" name="fullWeight" id="fullWeight" v-model="form.fullWeight" :disabled="sending" />
                 <span class="md-error" v-if="!$v.form.fullWeight.required">Peso cheio é obrigatório.</span>
-                <span class="md-error" v-else-if="!$v.form.fullWeight.minLength">Deve conter no mínimo 5 caracteres.</span>
+                <span class="md-error" v-else-if="!$v.form.fullWeight.minLength">Deve conter no mínimo 3 caracteres.</span>
               </md-field>
             </div>
           </div>
@@ -112,11 +112,11 @@
         },
         fullWeight: {
           required,
-          minLength: minLength(5)
+          minLength: minLength(3)
         },
         emptyWeight: {
           required,
-          minLength: minLength(5)
+          minLength: minLength(3)
         }
       }
     },
