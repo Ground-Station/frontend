@@ -79,8 +79,8 @@ export default {
       
     }
   },
-  async mounted () {
-      await this.params.data.push([this.tempos, this.altitudes])
+  mounted () {
+      this.params.data.push([`${this.random1()}`, `${this.random2()}`])
   },
   components: { VueTableDynamic }
 }
