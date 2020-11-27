@@ -65,24 +65,23 @@ export default {
     })
   },
   methods: {
-  random2 = () => {
-  return 
-    axios
-    .get('http://127.0.0.1:3000/altitudes')
-    .then(response => {(this.altitudes = [response.data[response.data.length - 1].altitude]); console.log(response.data[0].altitude)})
-
-},
-  random1 = () => {
+    async random2 () {
     return 
-        axios
-        .get('http://127.0.0.1:3000/altitudes')
-        .then(response => {(this.tempos = [response.data[response.data.length - 1].tempo]); console.log(response.data[0].nome)})
-    
-  }
+     await axios
+      .get('http://127.0.0.1:3000/altitudes')
+      .then(response => {(this.altitudes = [response.data[response.data.length - 1].altitude]); console.log(response.data[0].altitude)})
 
   },
-  mounted () {
-      this.params.data.push([this.random1, this.random2])
+    async random1 () {
+      return 
+          await axios
+          .get('http://127.0.0.1:3000/altitudes')
+          .then(response => {(this.tempos = [response.data[response.data.length - 1].tempo]); console.log(response.data[0].nome)})
+      
+    }
+  },
+  async mounted () {
+      await this.params.data.push([this.random1, this.random2])
   },
   components: { VueTableDynamic }
 }
