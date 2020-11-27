@@ -3,9 +3,9 @@
     <md-card-content  style="display: flex; flex: 1">
       <div class="md-layout md-alignment-center-space-around"  style="flex: 1" > 
         <div class="md-layout-item md-size-80">
-           <div style="width: 600px">
-            <vue-table-dynamic :params="params" ref="table"></vue-table-dynamic>
-           </div>
+           <div id="chart">
+            <apexchart type="line" height="240" :options="chartOptions" :series="series"></apexchart>
+          </div>
         </div>
         <div class="md-layout-item md-size-10"   style="flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column" >
           <span class="md-display-1">{{ height }} metros</span>
@@ -18,71 +18,51 @@
 </template>
 
 <script>
-import VueTableDynamic from 'vue-table-dynamic'
-import * as axios from 'axios'
-
-
-
+import VueApexCharts from 'vue-apexcharts'
 export default {
-  name: 'Demo',
-  data() {
-    return {
-     tempos: null,
-     altitudes: null,
-      params: {
-        data: [
-          [`Altitude`, `Tempo`]
+  name: 'HeightData',
+  components: { apexchart: VueApexCharts},
+  data: () => ({  
+    fueling: true,
+    height: 16,
+    series: [{
+          name: "Altitude",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148,
+                 127, 111, 92, 80, 53, 41, 27, 11, 0]
+    }],
+    chartOptions: {
+      chart: {
+        width: '100%',
+        height: 240,
+        type: 'line',
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: 'smooth'
+      },
+      title: {
+        text: 'Altitude por tempo',
+        align: 'left'
+      },
+      grid: {
+        row: {
+          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          opacity: 0.5
+        },
+      },
+      xaxis: {
+        // categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        categories: ['10:30', '10:31', '10:32', '10:33', '10:34', '10:35', '10:36', '10:37', '10:38',
+                     '10:39', '10:40', '10:41', '10:42', '10:43', '10:44', '10:45', '10:46', '10:47'
         ],
-        header: 'row',
-        border: true,
-        stripe: true,
-        columnWidth: [{column: 0, width: 100}, {column: 2, width: 400}],
-        height: 180,
-        fixed: 0
       }
-    }
-  },
-  created () {
-      this.$crontab.addJob({
-      name: 'counter',
-      interval: {
-        seconds: '/5',
-      },
-      job: this.random1
     },
-    {
-     name: 'counter',
-      interval: {
-        seconds: '/5',
-      },
-      job: this.random2
-    },
-    {
-     name: 'counter',
-      interval: {
-        seconds: '/5',
-      },
-      job: this.mounted
-    })
-  },
-  methods: {
-    random2 () {
-    return axios
-      .get('http://127.0.0.1:3000/altitudes')
-      .then(response => {(this.altitudes = [response.data[response.data.length - 1].altitude]); console.log(response.data[0].altitude)})
-
-  },
-    random1 () {
-      return axios
-          .get('http://127.0.0.1:3000/altitudes')
-          .then(response => {(this.tempos = [response.data[response.data.length - 1].tempo]); console.log(response.data[0].nome)})
-      
-    }
-  },
-  mounted () {
-      this.params.data.push([`${this.random1()}`, `${this.random2()}`])
-  },
-  components: { VueTableDynamic }
+  }),
 }
 </script>
 
