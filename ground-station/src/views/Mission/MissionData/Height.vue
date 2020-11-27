@@ -20,14 +20,15 @@
 <script>
 import VueTableDynamic from 'vue-table-dynamic'
 import * as axios from 'axios'
-var tempos = null
-var altitudes = null
+
 
 
 export default {
   name: 'Demo',
   data() {
     return {
+     tempos: null,
+     altitudes: null,
       params: {
         data: [
           [`Altitude`, `Tempo`]
@@ -65,23 +66,21 @@ export default {
     })
   },
   methods: {
-    async random2 () {
-    return 
-     await axios
+    random2 () {
+    return axios
       .get('http://127.0.0.1:3000/altitudes')
       .then(response => {(this.altitudes = [response.data[response.data.length - 1].altitude]); console.log(response.data[0].altitude)})
 
   },
-    async random1 () {
-      return 
-          await axios
+    random1 () {
+      return axios
           .get('http://127.0.0.1:3000/altitudes')
           .then(response => {(this.tempos = [response.data[response.data.length - 1].tempo]); console.log(response.data[0].nome)})
       
     }
   },
   async mounted () {
-      await this.params.data.push([this.random1, this.random2])
+      await this.params.data.push([this.tempos, this.altitudes])
   },
   components: { VueTableDynamic }
 }
