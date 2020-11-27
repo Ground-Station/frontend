@@ -14,7 +14,7 @@
             <div class="md-layout-item md-small-size-100">
               <md-field :class="getValidationClass('rocketName')">
                 <label for="rocketName">Nome do foguete</label>
-                <md-input name="rocketName" id="rocketName" v-model="form.rocketName" :disabled="sending" />
+                <md-input name="rocketName" id="rocketName" v-model="form.rocketName" :disabled="sending"/>
                 <span class="md-error" v-if="!$v.form.rocketName.required">Nome do foguete é obrigatório.</span>
                 <span class="md-error" v-else-if="!$v.form.rocketName.minlength">Deve conter no mínimo 6 caracteres.</span>
               </md-field>
@@ -80,6 +80,7 @@
     required,
     minLength
   } from 'vuelidate/lib/validators'
+  import * as axios from 'axios'
 
   export default {
     name: 'FormValidation',
@@ -100,7 +101,8 @@
       },
       rocketSaved: false,
       sending: false,
-      lastRocket: null
+      lastRocket: null,
+      rocketId: null
     }),
     validations: {
       form: {
@@ -134,22 +136,27 @@
         this.form.fullWeight = null
         this.form.emptyWeight = null
       },
-      saveHardware () {
-        this.sending = true
-
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.lastRocket = `${this.form.rocketName}`
-          this.rocketSaved = true
-          this.sending = false
-          this.clearForm()
-          this.$router.push("/newHardware");
-        }, 1500)
+      async saveRocket () {
+           this.sending = true
+           const headers = { 
+              "content-type": "application/json"
+          };
+          const rocket = { nome: this.form.rocketName , pesoVazio: parseFloat(this.form.fullWeight), pesoCheio: parseFloat(this.form.emptyWeight)  };
+          await axios.post("http://127.0.0.1:3000/foguetes", rocket, { headers })
+          .then(() => {
+            console.log("Deu certo!");
+          },
+          this.$router.push("/newHardware"))
+          .catch(error => {
+            this.errorMessage = error.message;
+            console.error("There was an error!", error);
+            console.log(error.response.data);
+          });
       },
       validateRocket () {
         this.$v.$touch()
         if (!this.$v.$invalid) {
-          this.saveHardware()
+          this.saveRocket()
         }
       }
     }

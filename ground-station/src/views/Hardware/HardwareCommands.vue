@@ -53,6 +53,7 @@
     minLength,
     maxLength
   } from 'vuelidate/lib/validators'
+  import * as axios from 'axios'
 
   export default {
     name: 'FormValidation',
@@ -94,17 +95,23 @@
         this.form.commandName = null
         this.form.commandContent = null
       },
-      saveCommand () {
-        this.sending = true
+      async saveCommand () {
 
-        // Instead of this timeout, here you can call your API
-        window.setTimeout(() => {
-          this.lastCommand = `${this.form.commandName}`
-          this.commandSaved = true
-          this.sending = false
-          this.clearForm()
-          this.$router.push("/initMission");
-        }, 1500)
+         this.sending = true
+           const headers = { 
+              "content-type": "application/json"
+          };
+          const command = { nome: this.form.commandName , valor: parseFloat(this.form.commandContent)};
+          await axios.post("http://127.0.0.1:3000/comandos", command, { headers })
+          .then(() => {
+            console.log("Deu certo!");
+          },
+          this.$router.push("/initMission"))
+          .catch(error => {
+            this.errorMessage = error.message;
+            console.error("There was an error!", error);
+            console.log(error.response.data);
+          });
       },
       validateHardware () {
         this.$v.$touch()
