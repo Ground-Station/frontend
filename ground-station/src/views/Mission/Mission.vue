@@ -26,7 +26,7 @@
       <md-step id="flight" md-label="Voo" :md-editable="false" :md-done.sync="flight">
         <flightData>
         </flightData>
-        <md-button class="md-raised md-primary" @click="setDone('flight', 'landing')">Next</md-button>
+        <md-button class="md-raised md-primary" @click="setDone('flight', 'landing')">Próximo</md-button>
       </md-step>
 
       <md-step id="landing" md-label="Pouso" :md-editable="false" :md-done.sync="landing">

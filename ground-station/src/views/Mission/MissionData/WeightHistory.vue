@@ -1,37 +1,51 @@
 <template>
-  <md-card class="md-layout-item md-size-60 md-small-size-100">
-    <md-card-header>
-      <div class="md-title">Abastecimento do foguete</div>
-    </md-card-header>
-    <md-card-content>
-      <div class="md-layout md-gutter md-alignment-center-space-around">
-        <div class="md-layout-item md-size-60 md-small-size-100">
-          <div id="chart">
-            <apexchart type="radialBar" height="240" :options="weightOptions" :series="weightSeries"></apexchart>
+  <md-card class="md-layout-item md-layout md-size-60 md-small-size-100" id="container">
+    <md-card-content style="display: flex; flex: 1">
+      <div class="md-layout">
+        <div class="md-layout-item md-size-60 md-small-size-100" style="flex: 1">
+          <div id="chart" style="flex: 1">
+            <apexchart type="radialBar" height="340" :options="weightOptions" :series="weightSeries"></apexchart>
           </div>
         </div>
-        <div class="md-layout-item md-size-30 md-small-size-100">
-          <span class="md-display-1">{{ weight }} Kg</span>
-          <span class="md-headline">Peso</span>
+        <div class="md-layout-item md-size-30 md-small-size-100" style="flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column">
+          <span class="md-display-1" style="font-size: 70px">{{ weight }} kg</span>
+          <br>
+          <span class="md-headline" style="margin-top: 16px">Peso</span>
+
+              <md-card-actions>
+                <md-button class="md-raised md-primary" @click="startFueling()">Iniciar abastecimento</md-button>
+              </md-card-actions>
+
         </div>
       </div>
     </md-card-content>
+
+
+
   </md-card>
 </template>
 
 <style lang="scss" scoped>
-  
+  #container > .md-layout {
+
+  position: relative;
+  min-height: 380px;
+  height: 380px;
+}
+.card-container {
+  display: flex
+}
 </style>
 
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
-  name: 'WeightHistory',
+  name: 'WeightData',
   components: { apexchart: VueApexCharts},
   data: () => ({  
     fueling: true,
-    weight: 16,
-    weightSeries: [75],
+    weight: 27,
+    weightSeries: [100],
     weightOptions: {
       chart: {
         height: 240,
@@ -75,11 +89,11 @@ export default {
           dataLabels: {
             show: true,
             name: {
-              show: false
+              show: true
             },
             value: {
               color: '#111',
-              fontSize: '36px',
+              fontSize: '25px',
               show: true,
             }
           }
@@ -101,7 +115,7 @@ export default {
       stroke: {
         lineCap: 'round'
       },
-      labels: ['Bateria'],
+      labels: ['Abastecimento'],
     },
   }),
 }

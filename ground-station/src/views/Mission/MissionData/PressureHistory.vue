@@ -8,8 +8,8 @@
           </div>
         </div>
         <div class="md-layout-item md-size-10"   style="flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column" >
-          <span class="md-display-1">{{ height }} metros</span>
-          <span class="md-headline">Altitude</span>
+          <span class="md-display-1">{{ Pressão }} KPa</span>
+          <span class="md-headline">Pressão</span>
         </div>
       </div>
     </md-card-content>
@@ -19,15 +19,15 @@
 <script>
 import VueApexCharts from 'vue-apexcharts'
 export default {
-  name: 'HeightData',
+  name: 'VelocityData',
   components: { apexchart: VueApexCharts},
   data: () => ({  
     fueling: true,
-    height: 16,
+    Pressão: 109908,
     series: [{
-          name: "Altitude",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148,
-                 127, 111, 92, 80, 53, 41, 27, 11, 0]
+          name: "Pressão",
+          data: ['109908', '103611', '092050', '081419', '062072', '049877', '034561', '035577', '037168', '055337',
+                 '059877', '065343', '075944', '084740', '094344', '100135', '105684', '109664']
     }],
     chartOptions: {
       chart: {
@@ -45,7 +45,7 @@ export default {
         curve: 'smooth'
       },
       title: {
-        text: 'Altitude por tempo',
+        text: 'Pressão por tempo',
         align: 'left'
       },
       grid: {
